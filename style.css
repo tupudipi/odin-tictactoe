@@ -39,7 +39,7 @@ main{
     height: 8rem;
     display: grid;
     place-content: center;
-    /* border: 1px solid blue; */
+    font-size: 5rem;
 }
 
 footer{
@@ -51,3 +51,4 @@ footer{
 footer > *{
     margin: 1rem;
 }
+
