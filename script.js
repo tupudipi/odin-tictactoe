@@ -24,19 +24,32 @@ const gameBoard = (() => {
     const winnerQ = (a, b, c) => {
         console.log(array[a], array[b], array[c]);
         if (array[a] === 'X' && array[b] === 'X' && array[c] === 'X') {
-            return array[a];
+            winner = array[a];
+            return winner;
         }
         if (array[a] === 'O' && array[b] === 'O' && array[c] === 'O') {
-            return array[a];
+            winner = array[a];
+            return winner;
         }
         return false;
+    }
+
+    const resetGame = () => {
+        array = ['', '', '',
+            '', '', '',
+            '', '', ''];
+        winner = '?';
+        for (let i = 0; i < 9; i++) {
+            gameCells[i].innerHTML = '';
+        }
     }
 
     return {
         winner,
         checkWin,
         updateArray,
-        array
+        array,
+        resetGame
     };
 })();
 
@@ -62,13 +75,13 @@ const displayController = (() => {
         }
 
         if (gameBoard.checkWin()) {
-            if (currentPlayer.innerHTML === "X's turn") {
+            if (gameBoard.checkWin()=='X') {
                 currentPlayer.innerHTML = `${gameBoard.checkWin()} wins!`;
-                playerX.updateScore();
+                playerX.score++;
                 playerXScore.innerHTML = playerX.score;
             } else {
                 currentPlayer.innerHTML = `${gameBoard.checkWin()} wins!`;
-                playerO.updateScore();
+                playerO.score++;
                 playerOScore.innerHTML = playerO.score;
             }
         }
@@ -105,13 +118,9 @@ const Player = (symbol) => {
         return symbol;
     }
     let score = 0;
-    const updateScore = () => {
-        score++;
-    }
     return {
         getSymbol,
-        score,
-        updateScore
+        score
     }
 }
 
@@ -121,6 +130,9 @@ const playerO = Player('O');
 const currentPlayer = document.getElementById('current-player');
 const playerXScore = document.getElementById('player-x-score');
 const playerOScore = document.getElementById('player-o-score');
+
+const resetButton = document.getElementById('reset-button');
+resetButton.addEventListener('click', gameBoard.resetGame);
 
 const gameCells = Array.from(document.getElementsByClassName("gameCell"));
 gameCells.forEach(element => {
