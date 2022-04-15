@@ -14,13 +14,22 @@
     </header>
 
     <main>
-        <h2 id="current-player">X's turn</h2>
-        <div>
+        <div class="center">
+            <h2 id="current-player">X's turn</h2>
+            <div id="reset-game">
+                <button id="reset-button">Reset Game</button>
+            </div>
+            <div id="next-round">
+                <button id="next-round-button">Next Round</button>
+            </div>
+        </div>
+        
+        <div id="x-score" class="score">
             <h2>Player X score:</h2>
             <div id="player-x-score">0</div>
         </div>
 
-        <div>
+        <div id="o-score" class="score">
             <h2>Player O score:</h2>
             <div id="player-o-score">0</div>
         </div>
@@ -37,9 +46,7 @@
             <div class="gameCell" data-id="8"></div>
         </div>
 
-        <div id="reset-game">
-            <button id="reset-button">Reset Game</button>
-        </div>
+
     </main>
 
     <footer>

@@ -39,9 +39,28 @@ const gameBoard = (() => {
             '', '', '',
             '', '', ''];
         winner = '?';
-        for (let i = 0; i < 9; i++) {
-            gameCells[i].innerHTML = '';
-        }
+        playerO.score = 0;
+        playerX.score = 0;
+        playerXScore.innerHTML = 0;
+        playerOScore.innerHTML = 0;
+        gameCells.forEach(cell => {
+            cell.innerHTML = '';
+            cell.classList.remove('clicked');
+            cell.classList.remove('hover');
+        });
+    }
+
+    const nextRound = () => {
+        array = ['', '', '',
+        '', '', '',
+        '', '', ''];
+        winner = '?';
+        gameCells.forEach(cell => {
+            cell.innerHTML = '';
+            cell.classList.remove('clicked');
+            cell.classList.remove('hover');
+        });
+        currentPlayer.innerHTML === "X's turn";
     }
 
     return {
@@ -49,7 +68,8 @@ const gameBoard = (() => {
         checkWin,
         updateArray,
         array,
-        resetGame
+        resetGame,
+        nextRound
     };
 })();
 
@@ -133,6 +153,9 @@ const playerOScore = document.getElementById('player-o-score');
 
 const resetButton = document.getElementById('reset-button');
 resetButton.addEventListener('click', gameBoard.resetGame);
+
+const nextRoundBtn = document.getElementById('next-round-button');
+nextRoundBtn.addEventListener('click', gameBoard.nextRound);
 
 const gameCells = Array.from(document.getElementsByClassName("gameCell"));
 gameCells.forEach(element => {
