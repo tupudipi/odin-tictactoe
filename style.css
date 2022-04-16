@@ -25,20 +25,23 @@ main{
 }
 
 .gameBoard{
-    place-items: center;
-    background-color: black;
+    margin-left: auto;
+    margin-right: auto;
     grid-column: 2/3;
     grid-row: 2/3;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    gap:2px;
+    gap: 0px;
+    max-width: 30rem;
 }
 
 .gameCell{
+    margin: 0;
+    border: 1px solid black;
     background-color: white;
-    width: 8rem;
-    height: 8rem;
+    width: 10rem;
+    height: 10rem;
     display: grid;
     place-content: center;
     font-size: 5rem;

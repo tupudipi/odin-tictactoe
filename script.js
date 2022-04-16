@@ -1,8 +1,8 @@
 const gameBoard = (() => {
     let winner = '?';
     let array = ['', '', '',
-        '', '', '',
-        '', '', ''];
+                    '', '', '',
+                    '', '', ''];
     const updateArray = (i) => {
         if (currentPlayer.innerHTML === "X's turn") {
             array[i] = 'X';
@@ -35,10 +35,11 @@ const gameBoard = (() => {
     }
 
     const resetGame = () => {
-        array = ['', '', '',
+        gameBoard.array = ['', '', '',
             '', '', '',
             '', '', ''];
-        winner = '?';
+        gameBoard.winner = '?';
+        currentPlayer.innerHTML = "X's turn"
         playerO.score = 0;
         playerX.score = 0;
         playerXScore.innerHTML = 0;
@@ -48,19 +49,21 @@ const gameBoard = (() => {
             cell.classList.remove('clicked');
             cell.classList.remove('hover');
         });
+        console.log(gameBoard.array);
     }
 
     const nextRound = () => {
-        array = ['', '', '',
-        '', '', '',
-        '', '', ''];
-        winner = '?';
+        gameBoard.array = ['', '', '',
+                            '', '', '',
+                            '', '', ''];
+        gameBoard.winner = '?';
+        currentPlayer.innerHTML = "X's turn"
         gameCells.forEach(cell => {
             cell.innerHTML = '';
             cell.classList.remove('clicked');
             cell.classList.remove('hover');
         });
-        currentPlayer.innerHTML === "X's turn";
+        console.log(gameBoard.array);
     }
 
     return {
