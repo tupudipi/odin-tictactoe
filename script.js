@@ -35,10 +35,13 @@ const gameBoard = (() => {
     }
 
     const resetGame = () => {
-        gameBoard.array = ['', '', '',
-            '', '', '',
-            '', '', ''];
-        gameBoard.winner = '?';
+        while (array.length) {
+            array.pop();
+          }
+        for(let i=0; i<9; i++) {
+            array.push('');
+        }
+        winner = '?';
         currentPlayer.innerHTML = "X's turn"
         playerO.score = 0;
         playerX.score = 0;
@@ -53,10 +56,13 @@ const gameBoard = (() => {
     }
 
     const nextRound = () => {
-        gameBoard.array = ['', '', '',
-                            '', '', '',
-                            '', '', ''];
-        gameBoard.winner = '?';
+        while (array.length) {
+            array.pop();
+          }
+        for(let i=0; i<9; i++) {
+            array.push('');
+        }
+        winner = '?';
         currentPlayer.innerHTML = "X's turn"
         gameCells.forEach(cell => {
             cell.innerHTML = '';
@@ -112,10 +118,10 @@ const displayController = (() => {
 
     const hover = (event) => {
         let index = event.target.dataset.id;
-        if (gameBoard.array[index] == "") {
+        if (!gameCells[index].innerHTML) {
             if (currentPlayer.innerHTML === "X's turn") {
                 gameCells[index].innerHTML = 'X';
-            } else {
+            } else if (currentPlayer.innerHTML === "O's turn"){
                 gameCells[index].innerHTML = 'O';
             }
             gameCells[index].classList.add('hover');
@@ -124,7 +130,7 @@ const displayController = (() => {
 
     const resetHover = (event) => {
         let index = event.target.dataset.id;
-        if (gameBoard.array[index] == "") {
+        if (!gameCells[index].classList.contains('clicked')) {
             gameCells[index].innerHTML = '';
         }
     }
