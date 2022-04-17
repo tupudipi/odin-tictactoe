@@ -51,6 +51,7 @@ const gameBoard = (() => {
             cell.innerHTML = '';
             cell.classList.remove('clicked');
             cell.classList.remove('hover');
+            cell.style.removeProperty('pointer-events');
         });
         console.log(gameBoard.array);
     }
@@ -68,6 +69,7 @@ const gameBoard = (() => {
             cell.innerHTML = '';
             cell.classList.remove('clicked');
             cell.classList.remove('hover');
+            cell.style.removeProperty('pointer-events');
         });
         console.log(gameBoard.array);
     }
@@ -108,10 +110,16 @@ const displayController = (() => {
                 currentPlayer.innerHTML = `${gameBoard.checkWin()} wins!`;
                 playerX.score++;
                 playerXScore.innerHTML = playerX.score;
+                gameCells.forEach(cell => {
+                    cell.style.pointerEvents = "none";
+                });
             } else {
                 currentPlayer.innerHTML = `${gameBoard.checkWin()} wins!`;
                 playerO.score++;
                 playerOScore.innerHTML = playerO.score;
+                gameCells.forEach(cell => {
+                    cell.style.pointerEvents = "none";
+                });
             }
         }
     }
