@@ -121,6 +121,11 @@ const displayController = (() => {
                     cell.style.pointerEvents = "none";
                 });
             }
+        } else if (gameBoard.array.every(cell => cell !== '')) {
+            currentPlayer.innerHTML = "It's a tie!";
+            gameCells.forEach(cell => {
+                cell.style.pointerEvents = "none";
+            });
         }
     }
 
